@@ -10,7 +10,7 @@ import { cn } from '@/shared/lib/utils';
 import type { CurrentUser } from '@/modules/auth/types/auth.types';
 
 const navItems = [
-  { to: '/', label: 'Roadmaps', icon: Compass },
+  { to: '/dashboard', label: 'Roadmaps', icon: Compass },
   { to: '/profile', label: 'Profile', icon: User },
 ];
 

@@ -9,9 +9,25 @@ import { LogoutPage } from '@/modules/auth/pages/LogoutPage';
 import { HomePage } from '@/modules/home/pages/HomePage';
 import { ProfilePage } from '@/modules/profile/pages/ProfilePage';
 
+// Public Landing Imports
+import { LandingLayout } from '@/modules/landing/components/LandingLayout';
+import { LandingHomePage } from '@/modules/landing/pages/LandingHomePage';
+import { LandingRoadmapPage } from '@/modules/landing/pages/LandingRoadmapPage';
+import { LandingFeaturePage } from '@/modules/landing/pages/LandingFeaturePage';
+import { LandingContractPage } from '@/modules/landing/pages/LandingContractPage';
+
 function App() {
   return (
     <Routes>
+      {/* Public Landing Routes */}
+      <Route element={<LandingLayout />}>
+        <Route path="/" element={<LandingHomePage />} />
+        <Route path="/roadmaps" element={<LandingRoadmapPage />} />
+        <Route path="/features" element={<LandingFeaturePage />} />
+        <Route path="/contract" element={<LandingContractPage />} />
+        <Route path="/contact" element={<Navigate to="/contract" replace />} />
+      </Route>
+
       {/* Auth routes */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<LoginPage />} />
@@ -22,12 +38,12 @@ function App() {
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/me" element={<Navigate to="/profile" replace />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

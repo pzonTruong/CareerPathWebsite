@@ -38,7 +38,7 @@ export const LoginPage = () => {
       if (token) {
         tokenStore.set(token);
         toast.success('Logged in successfully.');
-        navigate('/');
+        navigate('/dashboard');
         return;
       }
       setEmail(values.email);
@@ -66,7 +66,7 @@ export const LoginPage = () => {
       const response = await authApi.verifyLoginOtp(email, otp);
       tokenStore.set(response.data.token);
       toast.success('Logged in successfully.');
-      navigate('/');
+      navigate('/dashboard');
     } catch (error: any) {
       toast.error(error?.response?.data?.message ?? 'Invalid OTP');
       setOtp('');
