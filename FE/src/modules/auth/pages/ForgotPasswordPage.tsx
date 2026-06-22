@@ -56,10 +56,12 @@ export const ForgotPasswordPage = () => {
   });
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{step === 'request' ? 'Forgot password' : 'Reset password'}</CardTitle>
-        <CardDescription>
+    <Card className="border-border bg-card/60 backdrop-blur-sm shadow-xl">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-xl font-bold tracking-tight">
+          {step === 'request' ? 'Forgot password' : 'Reset password'}
+        </CardTitle>
+        <CardDescription className="text-xs text-muted-foreground">
           {step === 'request'
             ? 'Enter your email to receive a reset token.'
             : `Enter the token sent to ${email} and your new password.`}
@@ -68,42 +70,42 @@ export const ForgotPasswordPage = () => {
       <CardContent>
         {step === 'request' ? (
           <form className="space-y-4" onSubmit={onRequestToken}>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email Address</Label>
               <div className="relative">
-                <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                <Input id="email" className="pl-9" placeholder="name@example.com" {...requestForm.register('email')} />
+                <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/75" />
+                <Input id="email" className="pl-9 h-10 text-sm bg-background/50 focus-visible:ring-primary" placeholder="name@example.com" {...requestForm.register('email')} />
               </div>
               {requestForm.formState.errors.email && (
-                <p className="text-xs text-destructive">{requestForm.formState.errors.email.message}</p>
+                <p className="text-xs text-destructive font-medium mt-1">{requestForm.formState.errors.email.message}</p>
               )}
             </div>
-            <Button className="w-full" type="submit">Send Reset Token</Button>
+            <Button className="w-full text-xs font-semibold uppercase tracking-wider h-10 mt-2" type="submit">Send Reset Token</Button>
           </form>
         ) : (
           <form className="space-y-4" onSubmit={onResetPassword}>
-            <div className="space-y-2">
-              <Label htmlFor="token">Reset Token</Label>
-              <Input id="token" placeholder="Paste token from email" {...resetForm.register('token')} />
+            <div className="space-y-1.5">
+              <Label htmlFor="token" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Reset Token</Label>
+              <Input id="token" className="h-10 text-sm bg-background/50 focus-visible:ring-primary" placeholder="Paste token from email" {...resetForm.register('token')} />
               {resetForm.formState.errors.token && (
-                <p className="text-xs text-destructive">{resetForm.formState.errors.token.message}</p>
+                <p className="text-xs text-destructive font-medium mt-1">{resetForm.formState.errors.token.message}</p>
               )}
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="newPassword">New Password</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="newPassword" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">New Password</Label>
               <div className="relative">
-                <KeyRound className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                <Input id="newPassword" className="pl-9" type="password" placeholder="At least 6 characters" {...resetForm.register('newPassword')} />
+                <KeyRound className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/75" />
+                <Input id="newPassword" className="pl-9 h-10 text-sm bg-background/50 focus-visible:ring-primary" type="password" placeholder="At least 6 characters" {...resetForm.register('newPassword')} />
               </div>
               {resetForm.formState.errors.newPassword && (
-                <p className="text-xs text-destructive">{resetForm.formState.errors.newPassword.message}</p>
+                <p className="text-xs text-destructive font-medium mt-1">{resetForm.formState.errors.newPassword.message}</p>
               )}
             </div>
-            <Button className="w-full" type="submit">Reset Password</Button>
+            <Button className="w-full text-xs font-semibold uppercase tracking-wider h-10 mt-2" type="submit">Reset Password</Button>
             <button
               type="button"
               onClick={() => setStep('request')}
-              className="w-full text-center text-xs text-muted-foreground hover:text-foreground transition-colors"
+              className="w-full text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               Back to request token
             </button>

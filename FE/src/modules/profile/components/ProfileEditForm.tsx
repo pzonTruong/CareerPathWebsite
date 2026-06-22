@@ -46,49 +46,51 @@ export const ProfileEditForm = ({ defaultValues, onSuccess }: ProfileEditFormPro
 
   return (
     <form className="space-y-5" onSubmit={onSubmit}>
-      <div className="space-y-2">
-        <Label htmlFor="displayName">Display Name</Label>
+      <div className="space-y-1.5">
+        <Label htmlFor="displayName" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Display Name</Label>
         <Input
           id="displayName"
+          className="h-10 text-sm bg-background/50 focus-visible:ring-primary"
           placeholder="Your name"
           {...register('displayName')}
         />
         {errors.displayName && (
-          <p className="text-xs text-destructive">{errors.displayName.message}</p>
+          <p className="text-xs text-destructive font-medium mt-1">{errors.displayName.message}</p>
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <Label htmlFor="bio">Bio</Label>
-          <span className="text-xs text-muted-foreground">{bioValue.length}/200</span>
+          <Label htmlFor="bio" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Bio</Label>
+          <span className="text-[10px] font-mono text-muted-foreground">{bioValue.length}/200</span>
         </div>
         <textarea
           id="bio"
           rows={3}
           placeholder="Tell us a little about yourself..."
-          className="w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full resize-none rounded border border-border bg-background/50 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-primary transition-colors"
           {...register('bio')}
         />
         {errors.bio && (
-          <p className="text-xs text-destructive">{errors.bio.message}</p>
+          <p className="text-xs text-destructive font-medium mt-1">{errors.bio.message}</p>
         )}
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="phone">Phone</Label>
+      <div className="space-y-1.5">
+        <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Phone</Label>
         <Input
           id="phone"
+          className="h-10 text-sm bg-background/50 focus-visible:ring-primary"
           placeholder="+1 555 000 0000"
           {...register('phone')}
         />
         {errors.phone && (
-          <p className="text-xs text-destructive">{errors.phone.message}</p>
+          <p className="text-xs text-destructive font-medium mt-1">{errors.phone.message}</p>
         )}
       </div>
 
-      <Button type="submit" className="w-full" disabled={saving}>
-        {saving ? 'Saving…' : 'Save Changes'}
+      <Button type="submit" className="w-full text-xs font-semibold uppercase tracking-wider h-10 mt-2" disabled={saving}>
+        {saving ? 'Saving Changes…' : 'Save Changes'}
       </Button>
     </form>
   );

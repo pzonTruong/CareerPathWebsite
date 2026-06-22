@@ -77,24 +77,26 @@ export const LoginPage = () => {
 
   if (step === 'verify') {
     return (
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle>Verify OTP</CardTitle>
-          <CardDescription>
+      <Card className="border-border bg-card/60 backdrop-blur-sm shadow-xl">
+        <CardHeader className="text-center pb-4">
+          <CardTitle className="text-xl font-bold tracking-tight">Verify OTP</CardTitle>
+          <CardDescription className="text-xs text-muted-foreground">
             Enter the 6-digit code sent to <span className="font-medium text-foreground">{email}</span>
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-5" onSubmit={onVerifySubmit}>
-            <OtpInput value={otp} onChange={setOtp} />
-            <Button className="w-full" type="submit" disabled={otp.length !== 6 || loading}>
-              {loading && <Loader2 className="size-4 animate-spin" />}
+            <div className="flex justify-center py-2">
+              <OtpInput value={otp} onChange={setOtp} />
+            </div>
+            <Button className="w-full text-xs font-semibold uppercase tracking-wider h-10" type="submit" disabled={otp.length !== 6 || loading}>
+              {loading && <Loader2 className="size-3.5 animate-spin" />}
               Verify and Login
             </Button>
             <button
               type="button"
               onClick={() => { setStep('login'); setOtp(''); }}
-              className="block w-full text-center text-sm text-muted-foreground transition hover:text-foreground"
+              className="block w-full text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground transition hover:text-foreground cursor-pointer"
             >
               Back to login
             </button>
@@ -105,33 +107,33 @@ export const LoginPage = () => {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Welcome back</CardTitle>
-        <CardDescription>Enter your account details to continue.</CardDescription>
+    <Card className="border-border bg-card/60 backdrop-blur-sm shadow-xl">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-xl font-bold tracking-tight">Welcome back</CardTitle>
+        <CardDescription className="text-xs text-muted-foreground">Enter your account details to continue.</CardDescription>
       </CardHeader>
       <CardContent>
         <form className="space-y-4" onSubmit={onLoginSubmit}>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+          <div className="space-y-1.5">
+            <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email Address</Label>
             <div className="relative">
-              <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="email" className="pl-9" placeholder="name@example.com" {...register('email')} />
+              <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/75" />
+              <Input id="email" className="pl-9 h-10 text-sm bg-background/50 focus-visible:ring-primary" placeholder="name@example.com" {...register('email')} />
             </div>
-            {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+            {errors.email && <p className="text-xs text-destructive font-medium mt-1">{errors.email.message}</p>}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+          <div className="space-y-1.5">
+            <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Password</Label>
             <div className="relative">
-              <KeyRound className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="password" className="pl-9" type="password" placeholder="Enter your password" {...register('password')} />
+              <KeyRound className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/75" />
+              <Input id="password" className="pl-9 h-10 text-sm bg-background/50 focus-visible:ring-primary" type="password" placeholder="••••••••" {...register('password')} />
             </div>
-            {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+            {errors.password && <p className="text-xs text-destructive font-medium mt-1">{errors.password.message}</p>}
           </div>
 
-          <Button className="w-full" type="submit" disabled={loading}>
-            {loading && <Loader2 className="size-4 animate-spin" />}
+          <Button className="w-full text-xs font-semibold uppercase tracking-wider h-10 mt-2" type="submit" disabled={loading}>
+            {loading && <Loader2 className="size-3.5 animate-spin" />}
             Continue to OTP
           </Button>
         </form>
